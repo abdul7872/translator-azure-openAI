@@ -6,7 +6,7 @@ A translator app using MS Azure whisper openAI modal, Next.js 14, React.js, Cler
 
 To get started, just clone the repository and run `npm install && npm run dev`:
 
-    git clone https://github.com/Abdul7872/nextjs-table.git
+    git clone [https://github.com/Abdul7872/nextjs-table.git](https://github.com/abdul7872/translator-azure-openAI.git)
     npm install
     npm run dev
 

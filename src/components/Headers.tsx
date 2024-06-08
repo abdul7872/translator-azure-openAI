@@ -15,10 +15,7 @@ function Headers() {
           </div>
         </Link>
       { userId ? (
-        <div>
-          Headersm {userId}
           <UserButton />
-        </div>
       ) : (
         <SignInButton mode='modal' fallbackRedirectUrl={'/translate'} />
       )}

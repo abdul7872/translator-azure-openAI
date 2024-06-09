@@ -38,7 +38,7 @@ export async function translate(prevState: FormState,formData: FormData) {
 			to: rawFormData.outputLang,
 		},
 		data: [{
-			text: rawFormData?.inputLang
+			text: rawFormData?.input
 		}],
 		responseType: 'json'
 	})
@@ -48,11 +48,11 @@ export async function translate(prevState: FormState,formData: FormData) {
 		console.log(data.error)
 	}
 
-	console.log({prevState, rawFormData }, data)
+	console.log(data?.[0]?.translations,)
 
 	return {
-		prevState,
-		output: data?.[0]?.translation?.[0]?.text,
+		...prevState,
+		output: data?.[0]?.translations?.[0]?.text,
 	}
 	
 }

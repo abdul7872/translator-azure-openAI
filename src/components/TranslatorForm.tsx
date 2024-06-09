@@ -4,16 +4,31 @@ import React from 'react'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { useFormState } from 'react-dom'
+import { translate } from '@/actions/translate'
 
 type props = {
   languages: TranslationLanguage
 }
 
+const initialState = { 
+  inputLang: 'auto',
+  input: '',
+  outputLang: 'en',
+  output: '',
+}
+
+export type FormState = typeof initialState;
+
 function TranslatorForm({ languages }: props) {
+  
+  const [state, formAction] = useFormState(translate, initialState);
+
+  console.log({ state })
   
   return (
     <div>
-      <form action="">
+      <form action={formAction}>
         <div>
           <Select name='inputLang' defaultValue='auto'>
             <SelectTrigger className="w-[280px]">

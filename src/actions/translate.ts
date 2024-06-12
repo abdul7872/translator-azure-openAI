@@ -48,7 +48,6 @@ export async function translate(prevState: FormState,formData: FormData) {
 		console.log(data.error)
 	}
 
-	console.log(data?.[0]?.translations,)
 
 	return {
 		...prevState,

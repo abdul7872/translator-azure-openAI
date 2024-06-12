@@ -21,7 +21,7 @@ const TranslatePage = async () => {
 
 
   return (
-    <div>
+    <div className='px-10 xl:px-0 mb-20'>
       {/* Translation Form */}
       <TranslatorForm languages={languages} />
 

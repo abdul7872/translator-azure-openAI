@@ -1,6 +1,7 @@
 'use server';
 
 import { FormState } from "@/components/TranslatorForm";
+import { addOrUpdateUser } from "@/mongodb/models/User";
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
 import { v4 } from "uuid";
@@ -47,6 +48,25 @@ export async function translate(prevState: FormState,formData: FormData) {
 	if(data?.error){
 		console.log(data.error)
 	}
+
+	if(rawFormData?.inputLang ==="auto"){
+		rawFormData.inputLang = data[0]?.detectedLanguage?.language;
+	}
+
+	console.log(data, data?.[0]?.translations)
+
+	try {
+		const translation = {
+			to: rawFormData?.inputLang,
+			from: rawFormData?.outputLang,
+			fromText: rawFormData?.input,
+			toText: data?.[0]?.translations?.[0]?.text as string,
+		}
+		addOrUpdateUser(userId, translation);
+	} catch (error) {
+		
+	}
+
 
 
 	return {

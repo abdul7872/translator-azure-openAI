@@ -4,6 +4,7 @@ import connectDB from "../db";
 export interface UserType extends Document {
     userId: string;
     translations: {
+        _id: string;
         timestamp: Date;
         fromText: string;
         from: string;
@@ -35,12 +36,14 @@ export async function addOrUpdateUser(userId: string, translation: Record<string
     // The new: true option in the options object ensures that the method returns the updated document after the operation is complete. If you don't set new: true, the method will return the original document before the update.
     // In summary, the code you have will either update an existing user's document with new translations or create a new user document with the given userId, and translations, and save it into the database.
     const options = { upsert: true, new: true, setDefaultsOnInsert: true } as const;
+
+    console.log({userId, translation })
     try {
         const user: UserType | null =  await User.findOneAndUpdate(
             { userId },
             { 
                 $set:{ userId },
-                $push: { translation }
+                $push: { translations: translation}
             },
             options
         );
@@ -52,3 +55,21 @@ export async function addOrUpdateUser(userId: string, translation: Record<string
         throw error;
     }
 } 
+
+export async function getTranslations(userId: string): Promise<UserType['translations']> {
+    await connectDB();
+    try {
+        const user: UserType | null = await User.findOne({ userId });
+        if(!user) throw new Error("User not found!");
+
+        console.log(user, user.translations)
+        
+        // sort translations by timestamp
+        user.translations.sort((a, b) => b.timestamp?.getTime() - a.timestamp?.getTime());
+        return user.translations;
+        
+    } catch (error) {
+        console.error("Error on fetch user translation", error);
+        throw error;
+    }
+}

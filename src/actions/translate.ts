@@ -4,6 +4,7 @@ import { FormState } from "@/components/TranslatorForm";
 import { addOrUpdateUser } from "@/mongodb/models/User";
 import { auth } from "@clerk/nextjs/server";
 import axios from "axios";
+import { revalidateTag } from "next/cache";
 import { v4 } from "uuid";
 
 const location = process?.env?.AZURE_TEXT_LOCATION
@@ -67,7 +68,7 @@ export async function translate(prevState: FormState,formData: FormData) {
 		
 	}
 
-
+	revalidateTag('translationHistory')
 
 	return {
 		...prevState,

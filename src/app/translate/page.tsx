@@ -1,3 +1,4 @@
+import TranslateHistory from '@/components/TranslateHistory'
 import TranslatorForm from '@/components/TranslatorForm'
 import React from 'react'
 
@@ -26,6 +27,8 @@ const TranslatePage = async () => {
       <TranslatorForm languages={languages} />
 
       {/* Translation History */}
+      <TranslateHistory />
+
     </div>
   )
 }

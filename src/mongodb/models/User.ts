@@ -37,7 +37,6 @@ export async function addOrUpdateUser(userId: string, translation: Record<string
     // In summary, the code you have will either update an existing user's document with new translations or create a new user document with the given userId, and translations, and save it into the database.
     const options = { upsert: true, new: true, setDefaultsOnInsert: true } as const;
 
-    console.log({userId, translation })
     try {
         const user: UserType | null =  await User.findOneAndUpdate(
             { userId },
@@ -73,3 +72,21 @@ export async function getTranslations(userId: string): Promise<UserType['transla
         throw error;
     }
 }
+
+export async function removeTranslation(userId: string, translationId: string): Promise<UserType> {
+    await connectDB();
+
+    try {
+        const user: UserType | null =  await User.findOneAndUpdate(
+            { userId },
+            { $pull: { translations: { _id: translationId }} },
+            { new: true }
+        );
+        if(!user) throw new Error("User not found!");
+        return user;
+        
+    } catch (error) {
+        console.error("Error on update user", error);
+        throw error;
+    }
+} 

@@ -58,9 +58,9 @@ export async function translate(prevState: FormState,formData: FormData) {
 
 	try {
 		const translation = {
-			to: rawFormData?.inputLang,
-			from: rawFormData?.outputLang,
+			from: rawFormData?.inputLang,
 			fromText: rawFormData?.input,
+			to: rawFormData?.outputLang,
 			toText: data?.[0]?.translations?.[0]?.text as string,
 		}
 		addOrUpdateUser(userId, translation);

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { useFormState } from 'react-dom'
 import { debounce } from 'lodash'
 import { translate } from '@/actions/translate'
+import SubmitButton from './SubmitBtn'
 
 type props = {
   languages: TranslationLanguage
@@ -87,8 +88,10 @@ function TranslatorForm({ languages }: props) {
           </div>
         </div>
 
-        <div>
-          <Button ref={submitBtnRef} type='submit'> submit</Button>
+        {console.log(state, '1234')}
+        <div className="mt-5 flex justify-end">
+          <SubmitButton disabled={!state?.input} />
+          <button type="submit" hidden ref={submitBtnRef} />
         </div>
       </form>
     </div>

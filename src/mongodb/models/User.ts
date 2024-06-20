@@ -61,8 +61,6 @@ export async function getTranslations(userId: string): Promise<UserType['transla
         const user: UserType | null = await User.findOne({ userId });
         if(!user) throw new Error("User not found!");
 
-        console.log(user, user.translations)
-        
         // sort translations by timestamp
         user.translations.sort((a, b) => b.timestamp?.getTime() - a.timestamp?.getTime());
         return user.translations;

@@ -54,8 +54,6 @@ export async function translate(prevState: FormState,formData: FormData) {
 		rawFormData.inputLang = data[0]?.detectedLanguage?.language;
 	}
 
-	console.log(data, data?.[0]?.translations)
-
 	try {
 		const translation = {
 			from: rawFormData?.inputLang,
@@ -69,9 +67,9 @@ export async function translate(prevState: FormState,formData: FormData) {
 	}
 
 	revalidateTag('translationHistory')
-
+	console.log(prevState, rawFormData)
 	return {
-		...prevState,
+		...rawFormData,
 		output: data?.[0]?.translations?.[0]?.text,
 	}
 	

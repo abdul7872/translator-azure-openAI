@@ -64,7 +64,7 @@ function TranslatorForm({ languages }: props) {
           </div>
 
           <div className='flex-1 space-y-2'>
-            <Select name='outputLang' defaultValue='en'>
+            <Select name='outputLang' defaultValue='ar'>
               <SelectTrigger className="w-[280px] border-none text-blue-500 font-bold">
                 <SelectValue placeholder="Select a language" />
               </SelectTrigger>
@@ -88,7 +88,6 @@ function TranslatorForm({ languages }: props) {
           </div>
         </div>
 
-        {console.log(state, '1234')}
         <div className="mt-5 flex justify-end">
           <SubmitButton disabled={!state?.input} />
           <button type="submit" hidden ref={submitBtnRef} />

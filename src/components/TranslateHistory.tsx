@@ -16,10 +16,11 @@ async function TranslateHistory() {
     : process.env.VERCEL_URL
     }/api/translation-history?userId=${userId}`
 
-    console.log({historyURL})
 
   const response = await fetch(historyURL, { next: { tags: ['translationHistory'] } })
   const { translations }: UserType = await response.json();
+
+  console.log('qwe',{historyURL, translations})
 
   return (
     <div>

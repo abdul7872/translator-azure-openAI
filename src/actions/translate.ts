@@ -7,9 +7,9 @@ import axios from "axios";
 import { revalidateTag } from "next/cache";
 import { v4 } from "uuid";
 
-const location = process?.env?.NEXT_PUBLIC_AZURE_TEXT_LOCATION
-const endpoint = process?.env?.NEXT_PUBLIC_AZURE_TEXT_TRANSLATION
-const key  = process?.env?.NEXT_PUBLIC_AZURE_TEXT_TRANSLATION_KEY
+const location = process?.env?.AZURE_TEXT_LOCATION
+const endpoint = process?.env?.AZURE_TEXT_TRANSLATION
+const key  = process?.env?.AZURE_TEXT_TRANSLATION_KEY
 
 export async function translate(prevState: FormState,formData: FormData) {
 	auth().protect();

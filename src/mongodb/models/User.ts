@@ -59,7 +59,7 @@ export async function getTranslations(userId: string): Promise<UserType['transla
     await connectDB();
     try {
         const user: UserType | null = await User.findOne({ userId });
-        if(!user) throw new Error("User not found!");
+        if(!user) return [];
 
         // sort translations by timestamp
         user.translations.sort((a, b) => b.timestamp?.getTime() - a.timestamp?.getTime());

@@ -1,6 +1,8 @@
 # translator-azure-openAI
 A translator app using MS Azure whisper openAI modal, Next.js 14, React.js, Clerk, shadcn, mongoDB.
 
+## Live : https://azure-translator-app.vercel.app/
+
 # Getting Started
 ### Running locally in development mode
 

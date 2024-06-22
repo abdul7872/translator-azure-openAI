@@ -17,7 +17,7 @@ async function TranslateHistory() {
     }/api/translation-history?userId=${userId}`
     
   const response = await fetch(historyURL, { next: { tags: ['translationHistory'] } })
-  const { translations }: UserType = await response.json();
+  const { translations }: UserType = await response?.json() ?? {};
 
   return (
     <div>

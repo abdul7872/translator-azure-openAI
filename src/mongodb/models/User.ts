@@ -67,7 +67,8 @@ export async function getTranslations(userId: string): Promise<UserType['transla
         
     } catch (error) {
         console.error("Error on fetch user translation", error);
-        throw error;
+        // throw error;
+        return [];
     }
 }
 

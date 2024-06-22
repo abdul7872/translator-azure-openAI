@@ -16,7 +16,7 @@ type props = {
 const initialState = {
   inputLang: 'auto',
   input: '',
-  outputLang: 'en',
+  outputLang: 'bn',
   output: '',
 }
 
@@ -64,7 +64,7 @@ function TranslatorForm({ languages }: props) {
           </div>
 
           <div className='flex-1 space-y-2'>
-            <Select name='outputLang' defaultValue='ar'>
+            <Select name='outputLang' defaultValue='bn'>
               <SelectTrigger className="w-[280px] border-none text-blue-500 font-bold">
                 <SelectValue placeholder="Select a language" />
               </SelectTrigger>
